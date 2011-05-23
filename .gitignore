@@ -4,3 +4,5 @@ Bin
 Obj
 *.suo
 *.user
+*.docstates
+_ReSharper*

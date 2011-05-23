@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Symphony", "Symphony\Symphony.csproj", "{2C967A9E-412C-43B9-8244-D8CCEE30D859}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Symphony.CELT", "Symphony.CELT\Symphony.CELT.csproj", "{1B7EB289-146E-4F0F-96EA-FCBAB33F970E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2C967A9E-412C-43B9-8244-D8CCEE30D859}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C967A9E-412C-43B9-8244-D8CCEE30D859}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C967A9E-412C-43B9-8244-D8CCEE30D859}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C967A9E-412C-43B9-8244-D8CCEE30D859}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B7EB289-146E-4F0F-96EA-FCBAB33F970E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B7EB289-146E-4F0F-96EA-FCBAB33F970E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B7EB289-146E-4F0F-96EA-FCBAB33F970E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B7EB289-146E-4F0F-96EA-FCBAB33F970E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
