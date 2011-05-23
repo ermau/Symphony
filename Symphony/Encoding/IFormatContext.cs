@@ -21,21 +21,16 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
+using System.Collections.Generic;
 
 namespace Symphony.Encoding
 {
-	public interface IAudioCodec
-		: ICodec
+	public interface IFormatContext
 	{
 		/// <summary>
-		/// Creates a decoder from the given format parser.
 		/// </summary>
-		/// <param name="options">The audio codec options.</param>
-		/// <param name="mediaStream">The format parser to get packets from.</param>
-		/// <returns>The audio decoder.</returns>
-		/// <exception cref="ArgumentNullException"><paramref name="mediaStream"/> or <paramref name="options"/> are <c>null</c>.</exception>
-		/// <exception cref="ArgumentException">No mapping could be found for <paramref name="mediaStream"/> to this codec.</exception>
-		IAudioDecoder CreateDecoder (AudioCodecOptions options, MediaStream mediaStream);
+		IEnumerable<MediaStream> Streams { get; }
+
+		IEnumerable<Tag> Tags { get; }
 	}
 }

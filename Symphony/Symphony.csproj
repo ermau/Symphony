@@ -47,10 +47,12 @@
     <Compile Include="Encoding\Formats\Ogg\OggParser.cs" />
     <Compile Include="Encoding\Formats\Raw\RawFormat.cs" />
     <Compile Include="Encoding\Formats\Raw\RawParser.cs" />
+    <Compile Include="Encoding\IAudioCodec.cs" />
     <Compile Include="Encoding\ICodec.cs" />
-    <Compile Include="Encoding\ICodecDecoder.cs" />
+    <Compile Include="Encoding\IAudioDecoder.cs" />
     <Compile Include="Encoding\ICodecProvider.cs" />
     <Compile Include="Encoding\IFormat.cs" />
+    <Compile Include="Encoding\IFormatContext.cs" />
     <Compile Include="Encoding\IFormatParser.cs" />
     <Compile Include="Encoding\IFormatProvider.cs" />
     <Compile Include="Encoding\Media.cs" />

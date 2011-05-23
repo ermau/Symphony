@@ -25,5 +25,13 @@ namespace Symphony.Encoding
 {
 	public interface IAudioDecoder
 	{
+		AudioCodecOptions Options { get; }
+
+		/// <summary>
+		/// Decodes an audio packet.
+		/// </summary>
+		/// <param name="packet"></param>
+		/// <returns></returns>
+		byte[] DecodeAudio (Packet packet);
 	}
 }
