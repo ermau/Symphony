@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Symphony", "Symphony\Symphony.csproj", "{2C967A9E-412C-43B9-8244-D8CCEE30D859}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Symphony.CELT", "Symphony.CELT\Symphony.CELT.csproj", "{1B7EB289-146E-4F0F-96EA-FCBAB33F970E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Symphony.Xiph", "Symphony.Xiph\Symphony.Xiph.csproj", "{1B7EB289-146E-4F0F-96EA-FCBAB33F970E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

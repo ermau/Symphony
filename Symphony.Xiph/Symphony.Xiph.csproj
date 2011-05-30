@@ -6,8 +6,8 @@
     <ProjectGuid>{1B7EB289-146E-4F0F-96EA-FCBAB33F970E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Symphony.CELT</RootNamespace>
-    <AssemblyName>Symphony.CELT</AssemblyName>
+    <RootNamespace>Symphony.Xiph</RootNamespace>
+    <AssemblyName>Symphony.Xiph</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Profile2</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -40,8 +40,9 @@
     <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CeltCodecProvider.cs" />
+    <Compile Include="XiphCodecProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Celt\Wrapper\WrappedCeltCodec.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Symphony\Symphony.csproj">
@@ -50,8 +51,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Implementation\" />
-    <Folder Include="Wrapper\" />
+    <Folder Include="Celt\Implementation\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

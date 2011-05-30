@@ -25,9 +25,9 @@ using System;
 using System.Collections.Generic;
 using Symphony.Encoding;
 
-namespace Symphony.CELT
+namespace Symphony.Xiph
 {
-	public class CeltCodecProvider
+	public class XiphCodecProvider
 		: ICodecProvider
 	{
 		public IEnumerable<ICodec> GetCodecs()
