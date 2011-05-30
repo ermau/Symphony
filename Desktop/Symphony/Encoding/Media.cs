@@ -21,16 +21,12 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System.Collections.Generic;
+using System;
+using System.IO;
 
 namespace Symphony.Encoding
 {
-	public interface IFormatContext
+	public static class Media
 	{
-		/// <summary>
-		/// </summary>
-		IEnumerable<MediaStream> Streams { get; }
-
-		IEnumerable<Tag> Tags { get; }
 	}
 }

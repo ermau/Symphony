@@ -21,10 +21,24 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-namespace Symphony.Encoding
+using System;
+using System.Collections.Generic;
+using Symphony.Encoding;
+using IFormatProvider = Symphony.Encoding.IFormatProvider;
+
+namespace Symphony.Xiph
 {
-	public interface IFormatParser
+	public class XiphProvider
+		: ICodecProvider, IFormatProvider
 	{
-		bool ReadPacket (out Packet packet);
+		public IEnumerable<ICodec> GetCodecs()
+		{
+			throw new NotImplementedException();
+		}
+
+		public IEnumerable<IFormat> GetFormats()
+		{
+			return new[] { new Ogg.OggFormat() };
+		}
 	}
 }

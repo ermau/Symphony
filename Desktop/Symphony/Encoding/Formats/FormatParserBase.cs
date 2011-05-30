@@ -21,10 +21,14 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-namespace Symphony.Encoding
-{
-	public static class Media
-	{
+using System;
 
+namespace Symphony.Encoding.Formats
+{
+	public abstract class FormatParserBase
+		: IFormatParser
+	{
+		public abstract bool TryReadContext (out IFormatContext context);
+		public abstract bool TryReadPacket (out Packet packet);
 	}
 }

@@ -22,14 +22,46 @@
 // SOFTWARE.
 
 using System;
+using System.Runtime.InteropServices;
+using Symphony.Encoding;
 
-namespace Symphony.Encoding
+namespace Symphony.Xiph.Vorbis.Wrapper
 {
-	public interface ICodec
+	public class VorbisCodecWrapper
+		: IAudioCodec
 	{
-		/// <summary>
-		/// Gets the name of the codec.
-		/// </summary>
-		string Name { get; }
+		public string Name
+		{
+			get { return "Vorbis"; }
+		}
+
+		public Version Version
+		{
+			get { return new Version (1, 3, 2); }
+		}
+
+		public IAudioDecoder CreateDecoder (AudioCodecOptions options, MediaStream mediaStream)
+		{
+			throw new NotImplementedException();
+		}
+	}
+
+	internal enum OV
+	{
+		FALSE = -1,
+		EOF = -2,
+		HOLE = -3,
+
+		EREAD = -128,
+		EFAULT = -129,
+		EIMPL = -130,
+		EINVAL = -131,
+		ENOTVORBIS = -132,
+		EBADHEADER = -133,
+		EVERSION = -134,
+		ENOTAUDIO = -135,
+		EBADPACKET = -136,
+		EBADLINK = -137,
+		ENOSEEK = -138
 	}
 }

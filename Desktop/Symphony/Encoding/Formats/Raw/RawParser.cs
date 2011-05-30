@@ -39,7 +39,7 @@ namespace Symphony.Encoding.Formats.Raw
 			this.stream = stream;
 		}
 
-		public bool ReadPacket (out Packet packet)
+		public bool TryReadPacket (out Packet packet)
 		{
 			packet = null;
 
@@ -50,6 +50,12 @@ namespace Symphony.Encoding.Formats.Raw
 				return true;
 			}
 
+			return false;
+		}
+
+		public bool TryReadContext (out IFormatContext context)
+		{
+			context = null;
 			return false;
 		}
 	}

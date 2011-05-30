@@ -21,21 +21,20 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+using System;
+
 namespace Symphony.Encoding
 {
-	public enum MediaType
+	public interface ICodec
 	{
-		Audio = 1,
-		Video = 2,
-		Subtitles = 3
-	}
+		/// <summary>
+		/// Gets the name of the codec.
+		/// </summary>
+		string Name { get; }
 
-	public class MediaStream
-	{
-		public MediaType Type
-		{
-			get;
-			private set;
-		}
+		/// <summary>
+		/// Gets the version of the codec.
+		/// </summary>
+		Version Version { get; }
 	}
 }

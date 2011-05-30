@@ -23,8 +23,9 @@
 
 using System;
 using System.IO;
+using Symphony.Encoding;
 
-namespace Symphony.Encoding.Formats.Ogg
+namespace Symphony.Xiph.Ogg
 {
 	public class OggFormat
 		: IFormat

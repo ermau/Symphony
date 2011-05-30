@@ -23,8 +23,9 @@
 
 using System;
 using System.IO;
+using Symphony.Encoding;
 
-namespace Symphony.Encoding.Formats.Ogg
+namespace Symphony.Xiph.Ogg
 {
 	public class OggParser
 		: IFormatParser
@@ -37,7 +38,7 @@ namespace Symphony.Encoding.Formats.Ogg
 			this.stream = stream;
 		}
 
-		public bool ReadPacket (out Packet packet)
+		public bool TryReadPacket (out Packet packet)
 		{
 			packet = null;
 
@@ -62,11 +63,36 @@ namespace Symphony.Encoding.Formats.Ogg
 
 			int checksum = BitConverter.ToInt32 (pageHeaderData, 22);
 
-			int segments = BitConverter.ToInt32 (pageHeaderData, 26);
+			byte segments = pageHeaderData[26];
 
 			byte[] segmentLengths = new byte[segments];
+			if (stream.ReadBytes (out segmentLengths, segments) < segments)
+				return false;
 
+			byte[][] data = new byte[segmentLengths.Length][];
+			for (int i = 0; i < segmentLengths.Length; ++i)
+			{
+				byte len = segmentLengths[i];
+				byte[] segment;
+				if (stream.ReadBytes (out segment, len) != len)
+					return false;
+
+				data[i] = segment;
+			}
+
+			OggPage page = new OggPage (streamSerialNumber);
+			page.Type = type;
+			page.Version = version;
+			page.SegmentLengths = segmentLengths;
+			page.Segments = data;
+
+			packet = page;
 			return true;
+		}
+
+		public bool TryReadContext (out IFormatContext context)
+		{
+			throw new NotImplementedException();
 		}
 
 		private readonly Stream stream;
@@ -102,6 +128,12 @@ namespace Symphony.Encoding.Formats.Ogg
 		}
 
 		public byte[] SegmentLengths
+		{
+			get;
+			set;
+		}
+
+		public byte[][] Segments
 		{
 			get;
 			set;

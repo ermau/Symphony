@@ -3,15 +3,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2C967A9E-412C-43B9-8244-D8CCEE30D859}</ProjectGuid>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D9FB7589-98B1-440C-8833-F135A2C2CCBA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Symphony</RootNamespace>
     <AssemblyName>Symphony</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Profile2</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -33,23 +33,22 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Net" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AudioFormat.cs" />
     <Compile Include="Encoding\AudioCodecOptions.cs" />
+    <Compile Include="AudioFormat.cs" />
     <Compile Include="Encoding\Formats\BuiltInFormatProvider.cs" />
-    <Compile Include="Encoding\Formats\Ogg\OggFormat.cs" />
-    <Compile Include="Encoding\Formats\Ogg\OggParser.cs" />
+    <Compile Include="Encoding\Formats\FormatParserBase.cs" />
     <Compile Include="Encoding\Formats\Raw\RawFormat.cs" />
     <Compile Include="Encoding\Formats\Raw\RawParser.cs" />
     <Compile Include="Encoding\IAudioCodec.cs" />
-    <Compile Include="Encoding\ICodec.cs" />
     <Compile Include="Encoding\IAudioDecoder.cs" />
+    <Compile Include="Encoding\ICodec.cs" />
     <Compile Include="Encoding\ICodecProvider.cs" />
     <Compile Include="Encoding\IFormat.cs" />
     <Compile Include="Encoding\IFormatContext.cs" />
@@ -58,12 +57,11 @@
     <Compile Include="Encoding\Media.cs" />
     <Compile Include="Encoding\MediaStream.cs" />
     <Compile Include="Encoding\Packet.cs" />
-    <Compile Include="Encoding\StreamExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Encoding\StreamExtensions.cs" />
     <Compile Include="Encoding\Tag.cs" />
   </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
