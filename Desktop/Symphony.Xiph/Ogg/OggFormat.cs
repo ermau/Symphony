@@ -23,6 +23,7 @@
 
 using System;
 using System.IO;
+using System.Runtime.InteropServices;
 using Symphony.Encoding;
 
 namespace Symphony.Xiph.Ogg
@@ -39,5 +40,16 @@ namespace Symphony.Xiph.Ogg
 		{
 			return new OggParser (stream);
 		}
+	}
+
+	[StructLayout (LayoutKind.Sequential)]
+	internal struct oggpack_buffer
+	{
+		private long endbyte;
+		private int endbit;
+
+		private IntPtr buffer;
+		private IntPtr ptr;
+		private long storage;
 	}
 }
