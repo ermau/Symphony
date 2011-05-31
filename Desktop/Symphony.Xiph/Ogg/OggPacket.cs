@@ -22,6 +22,7 @@
 // SOFTWARE.
 
 using System;
+using System.Runtime.InteropServices;
 using Symphony.Encoding;
 
 namespace Symphony.Xiph.Ogg
@@ -35,39 +36,26 @@ namespace Symphony.Xiph.Ogg
 			Granule = granule;
 		}
 
-		#if !SILVERLIGHT
-		internal OggPacket (int streamIndex, ogg_packet packet)
-			: this (streamIndex, packet.packetno, packet.granulepos, packet.packet)
-		{
-		}
-		#endif
-
 		public long Granule
 		{
 			get;
 			private set;
 		}
-
-		#if !SILVERLIGHT
-		internal ogg_packet ToInternalPacket (OggPacket packet)
-		{
-			ogg_packet p = new ogg_packet();
-			p.packetno = packet.PacketNumber;
-			p.bytes = (IntPtr)packet.Data.Length;
-			p.packet = packet.Data;
-			p.granulepos = packet.Granule;
-
-			return p;
-		}
-		#endif
 	}
 
 	#if !SILVERLIGHT
+	[StructLayout (LayoutKind.Sequential)]
 	internal struct ogg_packet
 	{
-		public byte[] packet;
+		public IntPtr packet;
+		
+		[MarshalAs (UnmanagedType.SysInt)]
 		public IntPtr bytes;
+
+		[MarshalAs (UnmanagedType.SysInt)]
 		public IntPtr b_o_s;
+
+		[MarshalAs (UnmanagedType.SysInt)]
 		public IntPtr e_o_s;
 
 		public long granulepos;
