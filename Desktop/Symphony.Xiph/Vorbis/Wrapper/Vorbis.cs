@@ -66,9 +66,35 @@ namespace Symphony.Xiph.Vorbis.Wrapper
 		}
 	}
 
-	internal struct vorbis_block
+	[StructLayout (LayoutKind.Sequential)]
+	internal unsafe struct vorbis_block
 	{
-		
+		private float** pcm;
+		private oggpack_buffer opb;
+
+		private long lW;
+		private long W;
+		private long nW;
+		private int pcmend;
+		private int mode;
+
+		private int eofflag;
+		private long granulepos;
+		private long sequence;
+		private vorbis_dsp_state* vd;
+
+		private IntPtr localstore;
+		private long localtop;
+		private long localalloc;
+		private long totaluse;
+		private IntPtr reap;
+
+		private long glue_bits;
+		private long time_bits;
+		private long floor_bits;
+		private long res_bits;
+
+		private IntPtr @internal;
 	}
 
 // ReSharper disable InconsistentNaming
