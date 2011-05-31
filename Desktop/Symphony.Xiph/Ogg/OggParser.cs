@@ -79,12 +79,13 @@ namespace Symphony.Xiph.Ogg
 				{
 					page = this.lastPage;
 					i = this.offset;
+					streamIndex = page.StreamIndex;
 				}
 
 				this.lastPage = page;
 
 				int packetLength = 0;
-				for (int s = 0; s < page.Segments.Length; ++s)
+				for (int s = i; s < page.Segments.Length; ++s)
 				{
 					byte len = (byte)page.Segments[s].Length;
 					packetLength += len;
@@ -95,10 +96,11 @@ namespace Symphony.Xiph.Ogg
 
 				byte[] packetData = new byte[packetLength];
 
+				int o = this.offset;
 				for (; i < page.Segments.Length; ++i)
 				{
 					int segmentLength = page.Segments[i].Length;
-					Buffer.BlockCopy (page.Segments[i], 0, packetData, i * 255, segmentLength);
+					Buffer.BlockCopy (page.Segments[i], 0, packetData, (i - o) * 255, segmentLength);
 					if (segmentLength < 255)
 					{
 						havePacket = true;
@@ -108,7 +110,7 @@ namespace Symphony.Xiph.Ogg
 
 				pagesOfData.Add (packetData);
 
-				this.offset = (i == page.Segments.Length) ? 0 : i;
+				this.offset = (i + 1 == page.Segments.Length) ? 0 : i + 1;
 			}
 
 			if (havePacket)
