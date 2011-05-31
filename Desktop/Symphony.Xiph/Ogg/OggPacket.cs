@@ -22,27 +22,56 @@
 // SOFTWARE.
 
 using System;
-using System.Runtime.InteropServices;
 using Symphony.Encoding;
 
-namespace Symphony.Xiph.Vorbis.Wrapper
+namespace Symphony.Xiph.Ogg
 {
-	public class VorbisCodecWrapper
-		: IAudioCodec
+	public class OggPacket
+		: Packet
 	{
-		public string Name
+		internal OggPacket (int streamIndex, long packetNo, long granule, byte[] data)
+			: base (streamIndex, packetNo, data)
 		{
-			get { return "Vorbis"; }
+			Granule = granule;
 		}
 
-		public Version Version
+		#if !SILVERLIGHT
+		internal OggPacket (int streamIndex, ogg_packet packet)
+			: this (streamIndex, packet.packetno, packet.granulepos, packet.packet)
 		{
-			get { return new Version (1, 3, 2); }
+		}
+		#endif
+
+		public long Granule
+		{
+			get;
+			private set;
 		}
 
-		public IAudioDecoder CreateDecoder (AudioCodecOptions options, MediaStream mediaStream)
+		#if !SILVERLIGHT
+		internal ogg_packet ToInternalPacket (OggPacket packet)
 		{
-			throw new NotImplementedException();
+			ogg_packet p = new ogg_packet();
+			p.packetno = packet.PacketNumber;
+			p.bytes = (IntPtr)packet.Data.Length;
+			p.packet = packet.Data;
+			p.granulepos = packet.Granule;
+
+			return p;
 		}
+		#endif
 	}
+
+	#if !SILVERLIGHT
+	internal struct ogg_packet
+	{
+		public byte[] packet;
+		public IntPtr bytes;
+		public IntPtr b_o_s;
+		public IntPtr e_o_s;
+
+		public long granulepos;
+		public long packetno;
+	}
+	#endif
 }

@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,6 +30,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -41,15 +43,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Ogg\OggFormat.cs" />
+    <Compile Include="Ogg\OggPacket.cs" />
+    <Compile Include="Ogg\OggPage.cs" />
     <Compile Include="Ogg\OggParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Vorbis\Wrapper\Vorbis.cs" />
     <Compile Include="Vorbis\Wrapper\VorbisCodecWrapper.cs" />
+    <Compile Include="Vorbis\Wrapper\VorbisComment.cs" />
+    <Compile Include="Vorbis\Wrapper\VorbisDspState.cs" />
+    <Compile Include="Vorbis\Wrapper\VorbisInfo.cs" />
     <Compile Include="XiphProvider.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Vorbis\Wrapper\NewFolder1\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Symphony\Symphony.csproj">
       <Project>{D9FB7589-98B1-440C-8833-F135A2C2CCBA}</Project>

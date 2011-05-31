@@ -21,16 +21,35 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+using System;
+
 namespace Symphony.Encoding
 {
 	public abstract class Packet
 	{
-		protected Packet (int streamIndex)
+		protected Packet (int streamIndex, long packetNumber, byte[] data)
 		{
+			if (data == null)
+				throw new ArgumentNullException ("data");
+
 			StreamIndex = streamIndex;
+			PacketNumber = packetNumber;
+			Data = data;
 		}
 
 		public int StreamIndex
+		{
+			get;
+			private set;
+		}
+
+		public long PacketNumber
+		{
+			get;
+			private set;
+		}
+
+		public byte[] Data
 		{
 			get;
 			private set;

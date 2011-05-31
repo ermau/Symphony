@@ -64,14 +64,8 @@ namespace Symphony.Encoding.Formats.Raw
 		: Packet
 	{
 		public RawPacket (byte[] data)
-			: base (0)
+			: base (0, 0, data)
 		{
-			if (data == null)
-				throw new ArgumentNullException ("data");
-
-			this.data = data;
 		}
-
-		private readonly byte[] data;
 	}
 }

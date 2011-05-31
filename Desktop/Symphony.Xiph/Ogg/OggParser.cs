@@ -22,6 +22,7 @@
 // SOFTWARE.
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using Symphony.Encoding;
 
@@ -42,13 +43,123 @@ namespace Symphony.Xiph.Ogg
 		{
 			packet = null;
 
+			bool havePacket = false;
+			
+			List<byte[]> pagesOfData = new List<byte[]>();
+
+			bool streamIndexFound = false;
+			int streamIndex = 0;
+
+			while (!havePacket)
+			{
+				OggPage page; int i = 0;
+				if (this.offset == 0 || this.offset == this.lastPage.Segments.Length)
+				{
+					if (!streamIndexFound && this.pageBuffer.Count != 0)
+						page = this.pageBuffer.Dequeue();
+					else
+					{
+						page = ReadPage();
+						if (page == null)
+							break;
+					}
+
+					if (!streamIndexFound)
+					{
+						streamIndexFound = true;
+						streamIndex = page.StreamIndex;
+					}
+					else if (page.StreamIndex != streamIndex)
+					{
+						this.pageBuffer.Enqueue (page);
+						continue;
+					}
+				}
+				else
+				{
+					page = this.lastPage;
+					i = this.offset;
+				}
+
+				this.lastPage = page;
+
+				int packetLength = 0;
+				for (int s = 0; s < page.Segments.Length; ++s)
+				{
+					byte len = (byte)page.Segments[s].Length;
+					packetLength += len;
+
+					if (len < 255)
+						break;
+				}
+
+				byte[] packetData = new byte[packetLength];
+
+				for (; i < page.Segments.Length; ++i)
+				{
+					int segmentLength = page.Segments[i].Length;
+					Buffer.BlockCopy (page.Segments[i], 0, packetData, i * 255, segmentLength);
+					if (segmentLength < 255)
+					{
+						havePacket = true;
+						break;
+					}
+				}
+
+				pagesOfData.Add (packetData);
+
+				this.offset = (i == page.Segments.Length) ? 0 : i;
+			}
+
+			if (havePacket)
+				packet = new OggPacket (streamIndex, 0, this.lastPage.GranuleNumber, AssemblePacket (pagesOfData));
+
+			return havePacket;
+		}
+
+		public bool TryReadContext (out IFormatContext context)
+		{
+			throw new NotImplementedException();
+		}
+
+		private int offset;
+		private OggPage lastPage;
+		private readonly Stream stream;
+
+		private Queue<OggPage> pageBuffer = new Queue<OggPage>();
+
+		private byte[] AssemblePacket (List<byte[]> pages)
+		{
+			if (pages.Count == 1)
+				return pages[0];
+
+			int size = 0;
+			for (int i = 0; i < pages.Count; ++i)
+				size += pages[i].Length;
+
+			int offset = 0;
+			byte[] data = new byte[size];
+			for (int i = 0; i < pages.Count; ++i)
+			{
+				byte[] page = pages[i];
+				int len = page.Length;
+
+				Buffer.BlockCopy (page, 0, data, offset, len);
+				offset += len;
+			}
+
+			return data;
+		}
+
+		private OggPage ReadPage()
+		{
 			byte[] pageHeaderData;
 			if (stream.ReadBytes (out pageHeaderData, 27) < 27)
-				return false;
+				return null;
 
 			string magic = System.Text.Encoding.UTF8.GetString (pageHeaderData, 0, 4);
 			if (magic != "OggS")
-				return false;
+				return null;
 
 			byte version = pageHeaderData[4];
 
@@ -67,7 +178,7 @@ namespace Symphony.Xiph.Ogg
 
 			byte[] segmentLengths = new byte[segments];
 			if (stream.ReadBytes (out segmentLengths, segments) < segments)
-				return false;
+				return null;
 
 			byte[][] data = new byte[segmentLengths.Length][];
 			for (int i = 0; i < segmentLengths.Length; ++i)
@@ -75,27 +186,19 @@ namespace Symphony.Xiph.Ogg
 				byte len = segmentLengths[i];
 				byte[] segment;
 				if (stream.ReadBytes (out segment, len) != len)
-					return false;
+					return null;
 
 				data[i] = segment;
 			}
 
-			OggPage page = new OggPage (streamSerialNumber);
+			OggPage page = new OggPage (streamSerialNumber, pageSequenceNumber);
 			page.Type = type;
 			page.Version = version;
-			page.SegmentLengths = segmentLengths;
 			page.Segments = data;
+			page.Granule = granule;
 
-			packet = page;
-			return true;
+			return page;
 		}
-
-		public bool TryReadContext (out IFormatContext context)
-		{
-			throw new NotImplementedException();
-		}
-
-		private readonly Stream stream;
 	}
 
 	[Flags]
@@ -105,38 +208,5 @@ namespace Symphony.Xiph.Ogg
 		Continuation = 0x01,
 		BeginningOfStream = 0x02,
 		EndOfStream = 0x04
-	}
-
-	public class OggPage
-		: Packet
-	{
-		public OggPage (int streamIndex)
-			: base (streamIndex)
-		{
-		}
-
-		public byte Version
-		{
-			get;
-			set;
-		}
-
-		public OggPageType Type
-		{
-			get;
-			set;
-		}
-
-		public byte[] SegmentLengths
-		{
-			get;
-			set;
-		}
-
-		public byte[][] Segments
-		{
-			get;
-			set;
-		}
 	}
 }

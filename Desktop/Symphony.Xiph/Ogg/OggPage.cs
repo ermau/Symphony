@@ -22,17 +22,56 @@
 // SOFTWARE.
 
 using System;
-using System.Collections.Generic;
-using Symphony.Encoding;
 
-namespace Symphony.Xiph
+namespace Symphony.Xiph.Ogg
 {
-	public class XiphCodecProvider
-		: ICodecProvider
+	internal class OggPage
 	{
-		public IEnumerable<ICodec> GetCodecs()
+		public OggPage (int streamIndex, int sequenceNumber)
 		{
-			throw new NotImplementedException();
+			StreamIndex = streamIndex;
+			SequenceNumber = sequenceNumber;
+		}
+
+		public int StreamIndex
+		{
+			get;
+			private set;
+		}
+
+		public int SequenceNumber
+		{
+			get;
+			private set;
+		}
+
+		public byte Version
+		{
+			get;
+			set;
+		}
+
+		public OggPageType Type
+		{
+			get;
+			set;
+		}
+
+		public byte[][] Segments
+		{
+			get;
+			set;
+		}
+
+		public byte[] Granule
+		{
+			get;
+			set;
+		}
+
+		public long GranuleNumber
+		{
+			get { return BitConverter.ToInt64 (Granule, 0); }
 		}
 	}
 }
