@@ -45,13 +45,16 @@ namespace Symphony.Xiph.Vorbis.Wrapper
 		public static extern int vorbis_synthesis_headerin (ref vorbis_info vi, ref vorbis_comment vc, ref ogg_packet op);
 
 		[DllImport ("libvorbis.dll", CallingConvention = CallingConvention.Cdecl)]
-		public static extern int vorbis_synthesis (ref vorbis_block vorbisBlock, ref ogg_packet op);
+		public static extern int vorbis_synthesis (ref vorbis_block vb, ref ogg_packet op);
 
 		[DllImport ("libvorbis.dll", CallingConvention = CallingConvention.Cdecl)]
 		public static extern int vorbis_synthesis_blockin (ref vorbis_dsp_state v, ref vorbis_block vb);
 
 		[DllImport ("libvorbis.dll", CallingConvention = CallingConvention.Cdecl)]
-		public static extern int vorbis_synthesis_pcmout (ref vorbis_dsp_state v, out float[][] pcm);
+		public static unsafe extern int vorbis_synthesis_pcmout (ref vorbis_dsp_state v, float*** pcm);
+
+		[DllImport ("libvorbis.dll", CallingConvention = CallingConvention.Cdecl)]
+		public static extern int vorbis_synthesis_read (ref vorbis_dsp_state vorbisDspState, int samples);
 
 		[DllImport ("libvorbis.dll", CallingConvention = CallingConvention.Cdecl)]
 		public static extern long vorbis_packet_blocksize (ref vorbis_info vi, ref ogg_packet op);
@@ -67,32 +70,32 @@ namespace Symphony.Xiph.Vorbis.Wrapper
 	}
 
 	[StructLayout (LayoutKind.Sequential)]
-	internal unsafe struct vorbis_block
+	internal struct vorbis_block
 	{
-		private float** pcm;
+		private IntPtr pcm;
 		private oggpack_buffer opb;
 
-		private long lW;
-		private long W;
-		private long nW;
+		private int lW;
+		private int W;
+		private int nW;
 		private int pcmend;
 		private int mode;
 
 		private int eofflag;
 		private long granulepos;
 		private long sequence;
-		private vorbis_dsp_state* vd;
+		private IntPtr vd;
 
 		private IntPtr localstore;
-		private long localtop;
-		private long localalloc;
-		private long totaluse;
+		private int localtop;
+		private int localalloc;
+		private int totaluse;
 		private IntPtr reap;
 
-		private long glue_bits;
-		private long time_bits;
-		private long floor_bits;
-		private long res_bits;
+		private int glue_bits;
+		private int time_bits;
+		private int floor_bits;
+		private int res_bits;
 
 		private IntPtr @internal;
 	}

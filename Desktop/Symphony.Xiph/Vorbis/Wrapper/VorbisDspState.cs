@@ -8,17 +8,17 @@ namespace Symphony.Xiph.Vorbis.Wrapper
 
 	internal unsafe struct vorbis_dsp_state
 	{
-		private short analysisp;
+		private int analysisp;
 		private IntPtr vi;
 
-		private float** pcm;
-		private float** pcmret;
-		private short pcm_storage;
-		private short pcm_current;
-		private short pcm_returned;
+		private IntPtr pcm;
+		private IntPtr pcmret;
+		private int pcm_storage;
+		private int pcm_current;
+		private int pcm_returned;
 
-		private short preextrapolate;
-		private short eofflag;
+		private int preextrapolate;
+		private int eofflag;
 
 		private int lW;
 		private int W;

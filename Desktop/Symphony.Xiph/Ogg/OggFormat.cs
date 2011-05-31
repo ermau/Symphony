@@ -45,11 +45,11 @@ namespace Symphony.Xiph.Ogg
 	[StructLayout (LayoutKind.Sequential)]
 	internal struct oggpack_buffer
 	{
-		private long endbyte;
+		private int endbyte;
 		private int endbit;
 
 		private IntPtr buffer;
 		private IntPtr ptr;
-		private long storage;
+		private int storage;
 	}
 }
