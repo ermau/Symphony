@@ -48,7 +48,7 @@ namespace Symphony.Xiph.Vorbis.Wrapper
 		internal static extern string vorbis_comment_query (ref vorbis_comment vc, string tag, short count);
 
 		[DllImport ("libvorbis.dll", CallingConvention = CallingConvention.Cdecl)]
-		internal static extern short vorbis_comment_query_count (ref vorbis_comment vc, string tag);
+		internal static extern int vorbis_comment_query_count (ref vorbis_comment vc, string tag);
 
 		[DllImport ("libvorbis.dll", CallingConvention = CallingConvention.Cdecl)]
 		internal static extern void vorbis_comment_clear (ref vorbis_comment vc);
@@ -56,11 +56,12 @@ namespace Symphony.Xiph.Vorbis.Wrapper
 		
 	}
 
+	[StructLayout (LayoutKind.Sequential)]
 	internal struct vorbis_comment
 	{
 		public IntPtr user_comments;
 		public IntPtr comment_lengths;
-		public short comments;
+		public int comments;
 		public IntPtr vendor;
 	}
 }

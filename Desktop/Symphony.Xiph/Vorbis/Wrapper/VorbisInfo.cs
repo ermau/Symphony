@@ -22,10 +22,11 @@ namespace Symphony.Xiph.Vorbis.Wrapper
 		internal static extern void vorbis_info_blocksize (ref vorbis_info vi, short zo);
 	}
 
+	[StructLayout (LayoutKind.Sequential)]
 	internal struct vorbis_info
 	{
-		public short version;
-		public short channels;
+		public int version;
+		public int channels;
 		public int rate;
 
 		public int bitrate_upper;

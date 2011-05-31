@@ -49,14 +49,9 @@ namespace Symphony.Xiph.Ogg
 	{
 		public IntPtr packet;
 		
-		[MarshalAs (UnmanagedType.SysInt)]
-		public IntPtr bytes;
-
-		[MarshalAs (UnmanagedType.SysInt)]
-		public IntPtr b_o_s;
-
-		[MarshalAs (UnmanagedType.SysInt)]
-		public IntPtr e_o_s;
+		public int bytes;
+		public int b_o_s;
+		public int e_o_s;
 
 		public long granulepos;
 		public long packetno;

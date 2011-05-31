@@ -6,13 +6,13 @@ namespace Symphony.Xiph.Vorbis.Wrapper
 	{
 	}
 
-	internal struct vorbis_dsp_state
+	internal unsafe struct vorbis_dsp_state
 	{
 		private short analysisp;
 		private IntPtr vi;
 
-		private float[][] pcm;
-		private float[][] pcmret;
+		private float** pcm;
+		private float** pcmret;
 		private short pcm_storage;
 		private short pcm_current;
 		private short pcm_returned;

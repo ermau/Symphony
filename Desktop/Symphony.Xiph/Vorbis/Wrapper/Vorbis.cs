@@ -33,27 +33,33 @@ namespace Symphony.Xiph.Vorbis.Wrapper
 		public static extern bool vorbis_synthesis_idheader (ref ogg_packet op);
 
 		[DllImport ("libvorbis.dll", CallingConvention = CallingConvention.Cdecl)]
-		public static extern short vorbis_commentheader_in (ref vorbis_info vi, ref vorbis_comment vc, ref ogg_packet op);
+		public static extern int vorbis_commentheader_in (ref vorbis_info vi, ref vorbis_comment vc, ref ogg_packet op);
 
 		[DllImport ("libvorbis.dll", CallingConvention = CallingConvention.Cdecl)]
-		public static extern short vorbis_synthesis_init (ref vorbis_dsp_state v, ref vorbis_info vi);
+		public static extern int vorbis_synthesis_init (ref vorbis_dsp_state v, ref vorbis_info vi);
 
 		[DllImport ("libvorbis.dll", CallingConvention = CallingConvention.Cdecl)]
-		public static extern short vorbis_synthesis_restart (ref vorbis_dsp_state v);
+		public static extern int vorbis_synthesis_restart (ref vorbis_dsp_state v);
 
 		[DllImport ("libvorbis.dll", CallingConvention = CallingConvention.Cdecl)]
-		public static extern short vorbis_synthesis_headerin (ref vorbis_info vi, ref vorbis_comment vc, ref ogg_packet op);
+		public static extern int vorbis_synthesis_headerin (ref vorbis_info vi, ref vorbis_comment vc, ref ogg_packet op);
 
 		[DllImport ("libvorbis.dll", CallingConvention = CallingConvention.Cdecl)]
-		public static extern short vorbis_synthesis_blockin (ref vorbis_dsp_state v, ref vorbis_block vb);
+		public static extern int vorbis_synthesis (ref vorbis_block vorbisBlock, ref ogg_packet op);
 
 		[DllImport ("libvorbis.dll", CallingConvention = CallingConvention.Cdecl)]
-		public static extern short vorbis_synthesis_pcmout (ref vorbis_dsp_state v, out float[][] pcm);
+		public static extern int vorbis_synthesis_blockin (ref vorbis_dsp_state v, ref vorbis_block vb);
 
 		[DllImport ("libvorbis.dll", CallingConvention = CallingConvention.Cdecl)]
-		public static extern int vorbis_packet_blocksize (ref vorbis_info vi, ref ogg_packet op);
+		public static extern int vorbis_synthesis_pcmout (ref vorbis_dsp_state v, out float[][] pcm);
 
-		internal static void ThrowIfError (this short result)
+		[DllImport ("libvorbis.dll", CallingConvention = CallingConvention.Cdecl)]
+		public static extern long vorbis_packet_blocksize (ref vorbis_info vi, ref ogg_packet op);
+
+		[DllImport ("libvorbis.dll", CallingConvention = CallingConvention.Cdecl)]
+		public static extern int vorbis_block_init (ref vorbis_dsp_state v, ref vorbis_block vb);
+
+		internal static void ThrowIfError (this int result)
 		{
 			if (Enum.IsDefined (typeof (OV), result))
 				throw new VorbisException (result);
@@ -67,7 +73,7 @@ namespace Symphony.Xiph.Vorbis.Wrapper
 
 // ReSharper disable InconsistentNaming
 	internal enum OV
-		: short
+		: int
 	{
 		FALSE = -1,
 		EOF = -2,
@@ -90,7 +96,7 @@ namespace Symphony.Xiph.Vorbis.Wrapper
 	internal class VorbisException
 		: Exception
 	{
-		public VorbisException (short error)
+		public VorbisException (int error)
 			: base ("OV_" + (OV)error)
 		{
 			Error = (OV)error;
