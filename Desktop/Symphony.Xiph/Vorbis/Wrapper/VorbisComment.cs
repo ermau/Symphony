@@ -33,6 +33,17 @@ namespace Symphony.Xiph.Vorbis.Wrapper
 			vorbis_comment_init (ref this.comment);
 		}
 
+		internal VorbisComment (vorbis_comment comment)
+		{
+			Vendor = Marshal.PtrToStringAnsi (comment.vendor);
+		}
+
+		public string Vendor
+		{
+			get;
+			private set;
+		}
+
 		private vorbis_comment comment;
 
 		[DllImport ("libvorbis.dll", CallingConvention = CallingConvention.Cdecl)]
