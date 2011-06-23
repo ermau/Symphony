@@ -56,11 +56,29 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Compile Include="..\..\Desktop\Symphony\AudioFormat.cs">
-      <Link>AudioFormat.cs</Link>
+    <Compile Include="..\..\Desktop\Symphony\Audio\AudioEngine.cs">
+      <Link>Audio\AudioEngine.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Symphony\AudioSource.cs">
-      <Link>AudioSource.cs</Link>
+    <Compile Include="..\..\Desktop\Symphony\Audio\AudioFormat.cs">
+      <Link>Audio\AudioFormat.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Desktop\Symphony\Audio\AudioSource.cs">
+      <Link>Audio\AudioSource.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Desktop\Symphony\Audio\IAudioCaptureDevice.cs">
+      <Link>Audio\IAudioCaptureDevice.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Desktop\Symphony\Audio\IAudioDevice.cs">
+      <Link>Audio\IAudioDevice.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Desktop\Symphony\Audio\IAudioDeviceProvider.cs">
+      <Link>Audio\IAudioDeviceProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Desktop\Symphony\Audio\IAudioEngine.cs">
+      <Link>Audio\IAudioEngine.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Desktop\Symphony\Audio\IAudioPlaybackDevice.cs">
+      <Link>Audio\IAudioPlaybackDevice.cs</Link>
     </Compile>
     <Compile Include="..\..\Desktop\Symphony\Encoding\AudioCodecOptions.cs">
       <Link>Encoding\AudioCodecOptions.cs</Link>

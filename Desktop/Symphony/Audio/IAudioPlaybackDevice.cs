@@ -21,26 +21,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
-using System.Collections.Generic;
-
-namespace Symphony
+namespace Symphony.Audio
 {
-	public interface IAudioDeviceProvider
+	public interface IAudioPlaybackDevice
+		: IAudioDevice
 	{
-		/// <summary>
-		/// Raised when the <see cref="DefaultDevice"/> for this provider has changed.
-		/// </summary>
-		event EventHandler DefaultDeviceChanged;
-
-		/// <summary>
-		/// Gets the default device for this device provider.
-		/// </summary>
-		IAudioDevice DefaultDevice { get; }
-
-		/// <summary>
-		/// Gets the provided devices.
-		/// </summary>
-		IEnumerable<IAudioDevice> Devices { get; }
+		void Open();
 	}
 }

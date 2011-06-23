@@ -21,35 +21,18 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
-
-namespace Symphony
+namespace Symphony.Audio
 {
-	public interface IAudioDevice
+	public interface IAudioEngine
 	{
 		/// <summary>
-		/// Raised when the device becomes available or becomes unavailable.
+		/// Gets whether or not this engine supports 2d positional sound.
 		/// </summary>
-		event EventHandler IsAvailableChanged;
+		bool Supports2DPositionalSound { get; }
 
 		/// <summary>
-		/// Gets whether the device is currently available or not.
+		/// Gets whether or not this engine supports 3d positional sound.
 		/// </summary>
-		bool IsAvailable { get; }
-
-		/// <summary>
-		/// Gets the name of the device.
-		/// </summary>
-		string Name { get; }
-
-		/// <summary>
-		/// Opens the device and prepares it for use.
-		/// </summary>
-		void Open();
-
-		/// <summary>
-		/// Closes the device and frees associated resources.
-		/// </summary>
-		void Close();
+		bool Supports3DPositionalSound { get; }
 	}
 }

@@ -23,7 +23,7 @@
 
 using System;
 
-namespace Symphony.Encoding
+namespace Symphony.Audio
 {
 	public enum RawAudioEncoding
 		: byte

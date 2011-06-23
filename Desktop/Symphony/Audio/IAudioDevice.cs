@@ -21,67 +21,37 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System.ComponentModel;
-using Symphony.Encoding;
+using System;
+using System.Collections.Generic;
 
-namespace Symphony
+namespace Symphony.Audio
 {
-	public class AudioSource
-		: INotifyPropertyChanged
+	public interface IAudioDevice
+		: IDisposable
 	{
-		public event PropertyChangedEventHandler PropertyChanged;
+		/// <summary>
+		/// Raised when the device becomes available or becomes unavailable.
+		/// </summary>
+		event EventHandler IsAvailableChanged;
 
-		public const string FormatName = "Format";
-		public AudioFormat Format
-		{
-			get { return this.format; }
-			set
-			{
-				if (this.format == value)
-					return;
+		/// <summary>
+		/// Gets whether the device is currently available or not.
+		/// </summary>
+		bool IsAvailable { get; }
 
-				this.format = value;
-				OnPropertyChanged (FormatName);
-			}
-		}
+		/// <summary>
+		/// Gets the name of the device.
+		/// </summary>
+		string Name { get; }
 
-		public const string LocationName = "Location";
-		public Location Location
-		{
-			get { return this.location; }
-			set
-			{
-				if (this.location == value)
-					return;
+		/// <summary>
+		/// Gets the supported formats of the device.
+		/// </summary>
+		IEnumerable<AudioFormat> SupportedFormats { get; }
 
-				this.location = value;
-				OnPropertyChanged (LocationName);
-			}
-		}
-
-		public const string TagName = "Tag";
-		public object Tag
-		{
-			get { return this.tag; }
-			set
-			{
-				if (this.tag == value)
-					return;
-
-				this.tag = value;
-				OnPropertyChanged (TagName);
-			}
-		}
-
-		private Location location;
-		private AudioFormat format;
-		private object tag;
-
-		protected void OnPropertyChanged (string name)
-		{
-			var changed = PropertyChanged;
-			if (changed != null)
-				changed (this, new PropertyChangedEventArgs (name));
-		}
+		/// <summary>
+		/// Closes the device and frees associated resources allowing for reopening.
+		/// </summary>
+		void Close();
 	}
 }

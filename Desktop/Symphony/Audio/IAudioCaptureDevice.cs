@@ -21,18 +21,15 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-namespace Symphony
+namespace Symphony.Audio
 {
-	public interface IAudioEngine
+	public interface IAudioCaptureDevice
+		: IAudioDevice
 	{
 		/// <summary>
-		/// Gets whether or not this engine supports 2d positional sound.
+		/// Opens the device and prepares it for use.
 		/// </summary>
-		bool Supports2DPositionalSound { get; }
-
-		/// <summary>
-		/// Gets whether or not this engine supports 3d positional sound.
-		/// </summary>
-		bool Supports3DPositionalSound { get; }
+		/// <param name="format">The format to capture audio in.</param>
+		void Open (AudioFormat format);
 	}
 }

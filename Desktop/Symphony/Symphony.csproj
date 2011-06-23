@@ -40,9 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AudioSource.cs" />
+    <Compile Include="Audio\AudioEngine.cs" />
+    <Compile Include="Audio\AudioSource.cs" />
     <Compile Include="Encoding\AudioCodecOptions.cs" />
-    <Compile Include="AudioFormat.cs" />
+    <Compile Include="Audio\AudioFormat.cs" />
     <Compile Include="Encoding\Formats\BuiltInFormatProvider.cs" />
     <Compile Include="Encoding\Formats\FormatParserBase.cs" />
     <Compile Include="Encoding\Formats\Raw\RawFormat.cs" />
@@ -58,10 +59,11 @@
     <Compile Include="Encoding\Media.cs" />
     <Compile Include="Encoding\MediaStream.cs" />
     <Compile Include="Encoding\Packet.cs" />
-    <Compile Include="IAudioDevice.cs" />
-    <Compile Include="IAudioDeviceProvider.cs" />
-    <Compile Include="IAudioEngine.cs" />
-    <Compile Include="IAudioPlaybackProvider.cs" />
+    <Compile Include="Audio\IAudioCaptureDevice.cs" />
+    <Compile Include="Audio\IAudioDevice.cs" />
+    <Compile Include="Audio\IAudioDeviceProvider.cs" />
+    <Compile Include="Audio\IAudioEngine.cs" />
+    <Compile Include="Audio\IAudioPlaybackDevice.cs" />
     <Compile Include="Location.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Encoding\StreamExtensions.cs" />

@@ -1,6 +1,6 @@
-//
+﻿//
 // MIT License
-// Copyright �2011 Eric Maupin
+// Copyright ©2011 Eric Maupin
 // All rights reserved.
 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -21,65 +21,66 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-namespace Symphony
+using System.ComponentModel;
+
+namespace Symphony.Audio
 {
-	public class Location
+	public class AudioSource
+		: INotifyPropertyChanged
 	{
-		public Location (Location location)
-		{
-			X = location.X;
-			Y = location.Y;
-			Z = location.Z;
-		}
+		public event PropertyChangedEventHandler PropertyChanged;
 
-		public Location (float x, float y, float z = 0)
+		public const string FormatName = "Format";
+		public AudioFormat Format
 		{
-			X = x;
-			Y = y;
-			Z = z;
-		}
-
-		public float X
-		{
-			get;
-			private set;
-		}
-
-		public float Y
-		{
-			get;
-			private set;
-		}
-
-		public float Z
-		{
-			get;
-			private set;
-		}
-
-		public override bool Equals(object obj)
-		{
-			return base.Equals(obj);
-		}
-
-		public bool Equals (Location other)
-		{
-			if (ReferenceEquals (null, other))
-				return false;
-			if (ReferenceEquals (this, other))
-				return true;
-			return other.X.Equals (this.X) && other.Y.Equals (this.Y) && other.Z.Equals (this.Z);
-		}
-
-		public override int GetHashCode()
-		{
-			unchecked
+			get { return this.format; }
+			set
 			{
-				int result = this.X.GetHashCode();
-				result = (result * 397) ^ this.Y.GetHashCode();
-				result = (result * 397) ^ this.Z.GetHashCode();
-				return result;
+				if (this.format == value)
+					return;
+
+				this.format = value;
+				OnPropertyChanged (FormatName);
 			}
+		}
+
+		public const string LocationName = "Location";
+		public Location Location
+		{
+			get { return this.location; }
+			set
+			{
+				if (this.location == value)
+					return;
+
+				this.location = value;
+				OnPropertyChanged (LocationName);
+			}
+		}
+
+		public const string TagName = "Tag";
+		public object Tag
+		{
+			get { return this.tag; }
+			set
+			{
+				if (this.tag == value)
+					return;
+
+				this.tag = value;
+				OnPropertyChanged (TagName);
+			}
+		}
+
+		private Location location;
+		private AudioFormat format;
+		private object tag;
+
+		protected void OnPropertyChanged (string name)
+		{
+			var changed = PropertyChanged;
+			if (changed != null)
+				changed (this, new PropertyChangedEventArgs (name));
 		}
 	}
 }
