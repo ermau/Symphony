@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Flac\Wrapper\StreamMetadata.cs" />
     <Compile Include="Ogg\OggFormat.cs" />
     <Compile Include="Ogg\OggPacket.cs" />
     <Compile Include="Ogg\OggPage.cs" />
