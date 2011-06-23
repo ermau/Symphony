@@ -26,27 +26,35 @@ using System;
 namespace Symphony.Encoding
 {
 	public enum RawAudioEncoding
+		: byte
 	{
-		LPCM8bit = 1,
-		LPCM16bit = 2,
-		LPCMSingle = 3,
-		LPCMDouble = 4,
-		ALaw = 5,
-		MuLaw = 6
+		Unknown = 0,
+		LinearPcm = 1,
+		ALaw = 2,
+		MuLaw = 3
 	}
 
 	public class AudioFormat
 	{
-		public AudioFormat (RawAudioEncoding encoding, int channels, int frequency)
+		public AudioFormat (RawAudioEncoding encoding, int bitsPerSample, int channels, int frequency)
 		{
 			if (channels <= 0)
 				throw new ArgumentOutOfRangeException ("channels");
 			if (frequency <= 0)
 				throw new ArgumentOutOfRangeException ("frequency");
+			if ((bitsPerSample % 8) != 0)
+				throw new ArgumentOutOfRangeException ("bitsPerSample", "bitsPerSample is not a multiple of 8");
 
+			BitsPerSample = bitsPerSample;
 			Encoding = encoding;
 			Channels = channels;
 			Frequency = frequency;
+		}
+
+		public int BitsPerSample
+		{
+			get;
+			private set;
 		}
 
 		public RawAudioEncoding Encoding
