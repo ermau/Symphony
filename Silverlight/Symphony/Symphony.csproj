@@ -134,18 +134,6 @@
     <Compile Include="..\..\Desktop\Symphony\Encoding\Tag.cs">
       <Link>Encoding\Tag.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Symphony\IAudioDevice.cs">
-      <Link>IAudioDevice.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Desktop\Symphony\IAudioDeviceProvider.cs">
-      <Link>IAudioDeviceProvider.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Desktop\Symphony\IAudioEngine.cs">
-      <Link>IAudioEngine.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Desktop\Symphony\IAudioPlaybackProvider.cs">
-      <Link>IAudioPlaybackProvider.cs</Link>
-    </Compile>
     <Compile Include="..\..\Desktop\Symphony\Location.cs">
       <Link>Location.cs</Link>
     </Compile>
