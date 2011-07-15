@@ -1,6 +1,6 @@
-//
+﻿//
 // MIT License
-// Copyright �2011 Eric Maupin
+// Copyright ©2011 Eric Maupin
 // All rights reserved.
 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -21,65 +21,19 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-namespace Symphony
+namespace Symphony.Audio
 {
-	public class Location
+	public interface IAudioPlaybackEngine
+		: IAudioEngine
 	{
-		public Location (Location location)
-		{
-			X = location.X;
-			Y = location.Y;
-			Z = location.Z;
-		}
+		/// <summary>
+		/// Mutes all playback.
+		/// </summary>
+		void MutePlayback();
 
-		public Location (float x, float y, float z = 0)
-		{
-			X = x;
-			Y = y;
-			Z = z;
-		}
-
-		public float X
-		{
-			get;
-			private set;
-		}
-
-		public float Y
-		{
-			get;
-			private set;
-		}
-
-		public float Z
-		{
-			get;
-			private set;
-		}
-
-		public override bool Equals(object obj)
-		{
-			return base.Equals(obj);
-		}
-
-		public bool Equals (Location other)
-		{
-			if (ReferenceEquals (null, other))
-				return false;
-			if (ReferenceEquals (this, other))
-				return true;
-			return other.X.Equals (this.X) && other.Y.Equals (this.Y) && other.Z.Equals (this.Z);
-		}
-
-		public override int GetHashCode()
-		{
-			unchecked
-			{
-				int result = this.X.GetHashCode();
-				result = (result * 397) ^ this.Y.GetHashCode();
-				result = (result * 397) ^ this.Z.GetHashCode();
-				return result;
-			}
-		}
+		/// <summary>
+		/// Un-mutes all playback.
+		/// </summary>
+		void UnmutePlayback();
 	}
 }

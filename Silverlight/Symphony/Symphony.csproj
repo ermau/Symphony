@@ -56,14 +56,14 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Compile Include="..\..\Desktop\Symphony\Audio\AudioEngine.cs">
-      <Link>Audio\AudioEngine.cs</Link>
-    </Compile>
     <Compile Include="..\..\Desktop\Symphony\Audio\AudioFormat.cs">
       <Link>Audio\AudioFormat.cs</Link>
     </Compile>
     <Compile Include="..\..\Desktop\Symphony\Audio\AudioSource.cs">
       <Link>Audio\AudioSource.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Desktop\Symphony\Audio\DefaultTrackingAudioDevice.cs">
+      <Link>Audio\DefaultTrackingAudioDevice.cs</Link>
     </Compile>
     <Compile Include="..\..\Desktop\Symphony\Audio\IAudioCaptureDevice.cs">
       <Link>Audio\IAudioCaptureDevice.cs</Link>
@@ -77,8 +77,14 @@
     <Compile Include="..\..\Desktop\Symphony\Audio\IAudioEngine.cs">
       <Link>Audio\IAudioEngine.cs</Link>
     </Compile>
+    <Compile Include="..\..\Desktop\Symphony\Audio\IAudioObject.cs">
+      <Link>Audio\IAudioObject.cs</Link>
+    </Compile>
     <Compile Include="..\..\Desktop\Symphony\Audio\IAudioPlaybackDevice.cs">
       <Link>Audio\IAudioPlaybackDevice.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Desktop\Symphony\Audio\IAudioPlaybackEngine.cs">
+      <Link>Audio\IAudioPlaybackEngine.cs</Link>
     </Compile>
     <Compile Include="..\..\Desktop\Symphony\Encoding\AudioCodecOptions.cs">
       <Link>Encoding\AudioCodecOptions.cs</Link>
@@ -134,8 +140,11 @@
     <Compile Include="..\..\Desktop\Symphony\Encoding\Tag.cs">
       <Link>Encoding\Tag.cs</Link>
     </Compile>
-    <Compile Include="..\..\Desktop\Symphony\Location.cs">
-      <Link>Location.cs</Link>
+    <Compile Include="..\..\Desktop\Symphony\MathHelper.cs">
+      <Link>MathHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Desktop\Symphony\Vector3.cs">
+      <Link>Vector3.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Silverlight\SilverlightAudioCaptureDevice.cs" />

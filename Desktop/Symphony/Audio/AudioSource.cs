@@ -25,7 +25,7 @@ using System.ComponentModel;
 
 namespace Symphony.Audio
 {
-	public class AudioSource
+	/*public class AudioSource
 		: INotifyPropertyChanged
 	{
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -82,5 +82,5 @@ namespace Symphony.Audio
 			if (changed != null)
 				changed (this, new PropertyChangedEventArgs (name));
 		}
-	}
+	}*/
 }

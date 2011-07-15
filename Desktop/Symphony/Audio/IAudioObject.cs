@@ -21,19 +21,30 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+using Mono.GameMath;
+
 namespace Symphony.Audio
 {
-	public class AudioEngine
-		: IAudioEngine
+	public interface IAudioObject
 	{
-		public bool Supports2DPositionalSound
-		{
-			get { return false; }
-		}
+		/// <summary>
+		/// Gets the location of the audio object.
+		/// </summary>
+		Vector3 Location { get; }
 
-		public bool Supports3DPositionalSound
-		{
-			get { return false; }
-		}
+		/// <summary>
+		/// Gets the velocity of the audio object.
+		/// </summary>
+		Vector3 Velocity { get; }
+
+		/// <summary>
+		/// Gets the forward orientation of the audio object.
+		/// </summary>
+		Vector3 Forward { get; }
+
+		/// <summary>
+		/// Gets the upward orientation of the audio object.
+		/// </summary>
+		Vector3 Up { get; }
 	}
 }
