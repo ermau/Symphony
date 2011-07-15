@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Symphony.Xiph", "Desktop\Sy
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Symphony.Xiph", "Silverlight\Symphony.Xiph\Symphony.Xiph.csproj", "{439415FB-DB86-4820-8F52-165F8E823EDA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Symphony.Xna", "Desktop\Symphony.Xna\Symphony.Xna.csproj", "{0A6FB094-3B9C-4725-960E-D83182D6AD2E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,9 @@ Global
 		{439415FB-DB86-4820-8F52-165F8E823EDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{439415FB-DB86-4820-8F52-165F8E823EDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{439415FB-DB86-4820-8F52-165F8E823EDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A6FB094-3B9C-4725-960E-D83182D6AD2E}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{0A6FB094-3B9C-4725-960E-D83182D6AD2E}.Debug|Any CPU.Build.0 = Debug|x86
+		{0A6FB094-3B9C-4725-960E-D83182D6AD2E}.Release|Any CPU.ActiveCfg = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -42,6 +47,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{D9FB7589-98B1-440C-8833-F135A2C2CCBA} = {FF5C8E71-4320-4644-A64E-07A2C6CBF3CD}
 		{5BDD2D5B-D8C4-4C05-847F-EDFAE00D096B} = {FF5C8E71-4320-4644-A64E-07A2C6CBF3CD}
+		{0A6FB094-3B9C-4725-960E-D83182D6AD2E} = {FF5C8E71-4320-4644-A64E-07A2C6CBF3CD}
 		{D8C8286D-33E9-47E2-B9FA-6AFD2103921D} = {7CB8156C-D787-4A79-AB13-4ACD35F1B1CB}
 		{439415FB-DB86-4820-8F52-165F8E823EDA} = {7CB8156C-D787-4A79-AB13-4ACD35F1B1CB}
 	EndGlobalSection
