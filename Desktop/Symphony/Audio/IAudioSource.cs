@@ -23,26 +23,27 @@
 
 namespace Symphony.Audio
 {
-	public interface IAudioObject
+	public interface IAudioSource
+		: IAudioObject
 	{
 		/// <summary>
-		/// Gets the location of the audio object.
+		/// Gets or sets the location of the audio source.
 		/// </summary>
-		Vector3 Position { get; }
+		new Vector3 Position { get; set; }
 
 		/// <summary>
-		/// Gets the velocity of the audio object.
+		/// Gets or sets the velocity of the audio source.
 		/// </summary>
-		Vector3 Velocity { get; }
+		new Vector3 Velocity { get; set; }
 
 		/// <summary>
-		/// Gets the forward orientation of the audio object.
+		/// Gets or sets the forward orientation of the audio source.
 		/// </summary>
-		Vector3 Forward { get; }
+		new Vector3 Forward { get; set; }
 
 		/// <summary>
-		/// Gets the upward orientation of the audio object.
+		/// Gets or sets the upward orientation of the audio source.
 		/// </summary>
-		Vector3 Up { get; }
+		new Vector3 Up { get; set; }
 	}
 }

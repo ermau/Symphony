@@ -86,6 +86,9 @@
     <Compile Include="..\..\Desktop\Symphony\Audio\IAudioPlaybackEngine.cs">
       <Link>Audio\IAudioPlaybackEngine.cs</Link>
     </Compile>
+    <Compile Include="..\..\Desktop\Symphony\Audio\IAudioSource.cs">
+      <Link>Audio\IAudioSource.cs</Link>
+    </Compile>
     <Compile Include="..\..\Desktop\Symphony\Encoding\AudioCodecOptions.cs">
       <Link>Encoding\AudioCodecOptions.cs</Link>
     </Compile>
